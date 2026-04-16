@@ -16,3 +16,13 @@ def load_tasks():
 def save_tasks(tasks):
     with open(TASKS_FILE, "w", encoding="utf-8") as f:
         json.dump(tasks, f, ensure_ascii=False, indent=2)
+
+
+def now():
+    return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+
+def next_id(tasks):
+    if not tasks:
+        return 1
+    return max(t["id"] for t in tasks) + 1
