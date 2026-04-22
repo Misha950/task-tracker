@@ -41,3 +41,15 @@ def add_task(description):
     save_tasks(tasks)
     print(f"Задачу додано (ID: {task['id']})")
 
+
+def delete_task(task_id):
+    tasks = load_tasks()
+    new_tasks = []
+    for t in tasks:
+        if t["id"] != task_id:
+            new_tasks.append(t)
+    if len(new_tasks) == len(tasks):
+        print(f"Задача з ID {task_id} не знайдена.")
+        return
+    save_tasks(new_tasks)
+    print(f"Задачу з ID {task_id} видалено.")
