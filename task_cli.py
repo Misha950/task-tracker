@@ -53,3 +53,17 @@ def delete_task(task_id):
         return
     save_tasks(new_tasks)
     print(f"Задачу з ID {task_id} видалено.")
+
+
+def update_task(task_id, new_description):
+    tasks = load_tasks()
+    for t in tasks:
+        if t["id"] == task_id:
+            t["description"] = new_description
+            t["updatedAt"] = now()
+            save_tasks(tasks)
+            print(f"Задачу з ID {task_id} оновлено.")
+            return
+    print(f"Задача з ID {task_id} не знайдена.")        
+
+            
