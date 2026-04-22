@@ -66,4 +66,15 @@ def update_task(task_id, new_description):
             return
     print(f"Задача з ID {task_id} не знайдена.")        
 
+
+def mark_task(task_id, status):
+    tasks = load_tasks()
+    for t in tasks:
+        if t["id"] == task_id:
+            t["status"] = status
+            t["updatedAt"] = now()
+            save_tasks(tasks)
+            print(f"Задачу з ID {task_id} позначено як {status}.")
+            return
+    print(f"Задача з ID {task_id} не знайдена.")
             
