@@ -26,3 +26,18 @@ def next_id(tasks):
     if not tasks:
         return 1
     return max(t["id"] for t in tasks) + 1
+
+
+def add_task(description):
+    tasks = load_tasks()
+    task = {
+        "id": next_id(tasks),
+        "description": description,
+        "status": "todo",
+        "createdAt": now(),
+        "updatedAt": now(),
+    }
+    tasks.append(task)
+    save_tasks(tasks)
+    print(f"Задачу додано (ID: {task['id']})")
+
