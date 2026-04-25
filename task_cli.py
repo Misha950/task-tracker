@@ -78,3 +78,14 @@ def mark_task(task_id, status):
             return
     print(f"Задача з ID {task_id} не знайдена.")
             
+
+def list_tasks(filter_status=None):
+    tasks = load_tasks()
+    if filter_status:
+        tasks = [t for t in tasks if t["status"] == filter_status]
+    if not tasks:
+        print("Немає задач.")
+        return
+    for t in tasks:
+        print(f"ID: {t['id']} | {t['description']} | Статус: {t['status']} | Створено: {t['createdAt']} | Оновлено: {t['updatedAt']}")
+  
