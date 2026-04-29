@@ -100,14 +100,29 @@ def main():
     command = args[0]
 
     if command == "add":
+        if len(args) < 2:
+            print("Вкажи опис задачі. Приклад: python task_cli.py add 'Моя задача'")
+            return
         add_task(" ".join(args[1:]))
     elif command == "delete":
+        if len(args) < 2:
+            print("Вкажи ID задачі для видалення. Приклад: python task_cli.py delete 1")
+            return
         delete_task(int(args[1]))
     elif command == "update":
+        if len(args) < 3:
+            print("Вкажи ID задачі та новий опис. Приклад: python task_cli.py update 1 'Новий опис'")
+            return
         update_task(int(args[1]), " ".join(args[2:]))
     elif command == "mark-in-progress":
+        if len(args) < 2:
+            print("Вкажи ID задачі для позначення як 'in-progress'. Приклад: python task_cli.py mark-in-progress 1")
+            return
         mark_task(int(args[1]), "in-progress")
     elif command == "mark-done":
+        if len(args) < 2:
+            print("Вкажи ID задачі для позначення як 'done'. Приклад: python task_cli.py mark-done 1")
+            return
         mark_task(int(args[1]), "done")
     elif command == "list":
         if len(args) > 1:
@@ -117,6 +132,6 @@ def main():
     else:
         print("Невідома команда.")    
     
-    
+
 if __name__ == "__main__":
     main()
