@@ -89,3 +89,34 @@ def list_tasks(filter_status=None):
     for t in tasks:
         print(f"ID: {t['id']} | {t['description']} | Статус: {t['status']} | Створено: {t['createdAt']} | Оновлено: {t['updatedAt']}")
   
+
+def main():
+    args = sys.argv[1:]
+
+    if not args:
+        print("Будь ласка, введіть команду.")
+        return
+
+    command = args[0]
+
+    if command == "add":
+        add_task(" ".join(args[1:]))
+    elif command == "delete":
+        delete_task(int(args[1]))
+    elif command == "update":
+        update_task(int(args[1]), " ".join(args[2:]))
+    elif command == "mark-in-progress":
+        mark_task(int(args[1]), "in-progress")
+    elif command == "mark-done":
+        mark_task(int(args[1]), "done")
+    elif command == "list":
+        if len(args) > 1:
+            list_tasks(args[1])
+        else:
+            list_tasks()
+    else:
+        print("Невідома команда.")    
+    
+    
+if __name__ == "__main__":
+    main()
